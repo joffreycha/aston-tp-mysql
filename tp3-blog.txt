@@ -1,0 +1,7 @@
+UTILISATEUR (id_utilisateur, nom_utilisateur, prenom_utilisateur, pseudo_utilisateur, date_naissance_utilisateur, email_utilisateur, mdp_utilisateur)
+ARTICLE (id_article, titre_article, date_article, contenu_article, #id_utilisateur)
+COMMENTAIRE (id_commentaire, titre_commentaire, contenu_commentaire, date_commentaire, #id_utilisateur, #id_article)
+CATEGORIE (id_categorie, nom_categorie)
+TAG (id_tag, nom_tag)
+CONTENIR (id_article, id_tag)
+APPARTENIR (id_article, id_categorie)
