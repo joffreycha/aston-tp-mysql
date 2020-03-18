@@ -3,19 +3,19 @@ CREATE DATABASE IF NOT EXISTS `relations` /*!40100 DEFAULT CHARACTER SET utf8 */
 USE `relations`;
 
 CREATE TABLE IF NOT EXISTS `pays` (
-  `id_pays` int NOT NULL UNIQUE PRIMARY KEY,
+  `id_pays` int NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
   `nom_pays` varchar(45) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS `ville` (
-  `id_ville` int NOT NULL UNIQUE PRIMARY KEY,
+  `id_ville` int NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
   `id_pays` int NOT NULL,
   `nom_ville` varchar(45) NOT NULL,
   FOREIGN KEY (`id_pays`) REFERENCES `pays` (`id_pays`)
 );
 
 CREATE TABLE IF NOT EXISTS `langue` (
-  `id_langue` int NOT NULL UNIQUE PRIMARY KEY,
+  `id_langue` int NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
   `nom_langue` varchar(45) NOT NULL
 );
 
