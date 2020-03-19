@@ -202,7 +202,13 @@ ORDER BY QUANTITE DESC
 LIMIT 20;
 
 -- 27. Donner l’ID, le nom, le volume et la quantité vendue des 5 ‘Trappistes’ les plus vendus en 2016.
-
+SELECT NOM_ARTICLE, VOLUME, QUANTITE
+FROM article
+INNER JOIN ventes using(ID_ARTICLE)
+WHERE ANNEE = 2016
+AND ID_TYPE = 13 # Trappiste
+ORDER BY QUANTITE DESC
+LIMIT 5;
 
 -- 28. Donner l’ID, le nom, le volume et les quantités vendues en 2015 et 2016, des bières
 -- dont les ventes ont été st ables. ( Moins de 1% de variation)
