@@ -159,14 +159,23 @@ WHERE ID_TYPE = 13;
 
 -- 22. Lister les tickets sur lesquels apparaissent un des articles apparaissant aussi sur le
 -- ticket 2014 856 (le ticket 856 de l'année 2014)
-SELECT ID_ARTICLE
-FROM article
-INNER JOIN ventes using(ID_ARTICLE)
-WHERE ANNEE = 2014
-AND NUMERO_TICKET = 856;
+SELECT *
+FROM ticket
+WHERE EXISTS(
+	SELECT ID_ARTICLE FROM ventes
+	WHERE ANNEE = 2014
+	AND NUMERO_TICKET = 856
+);
 
--- 23. Lister les articles ayant un degré d’alcool plus élevé que la
--- plus forte des trappistes.
+-- 23. Lister les articles ayant un degré d’alcool plus élevé que la plus forte des trappistes.
+SELECT NOM_ARTICLE, VOLUME, TITRAGE
+FROM article
+WHERE TITRAGE > (
+	SELECT MAX(TITRAGE)
+    FROM article
+    WHERE ID_TYPE = 13 # Trappiste
+);
+
 -- 24. Editer les quantités vendues pour chaque couleur en 2014.
 -- 25. Donner pour chaque fabricant, le nombre de tickets sur lesquels apparait un de ses produits en 2014.
 -- 26. Donner l’ID, le nom, le volume et la quantité vendue des 20 articles les plus vendus en 2016.
