@@ -71,6 +71,11 @@ HAVING quantite_articles_vendus > 500
 ORDER BY quantite_articles_vendus DESC;
 
 -- 13. Lister les bières de type ‘Trappiste’. (id, nom de la bière, volume et titrage)
+SELECT ID_ARTICLE, NOM_ARTICLE, VOLUME, TITRAGE
+FROM article
+INNER JOIN type ON article.ID_TYPE = type.ID_TYPE
+WHERE NOM_TYPE = 'Trappiste';
+
 -- 14. Lister les marques de bières du continent ‘Afrique’
 -- 15. Lister les bières du continent ‘Afrique’
 -- 16. Lister les tickets (année, numéro de ticket, montant total payé). En sachant que le prix
