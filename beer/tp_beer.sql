@@ -77,6 +77,12 @@ INNER JOIN type ON article.ID_TYPE = type.ID_TYPE
 WHERE NOM_TYPE = 'Trappiste';
 
 -- 14. Lister les marques de bières du continent ‘Afrique’
+SELECT NOM_MARQUE
+FROM marque
+INNER JOIN pays ON marque.ID_PAYS = pays.ID_PAYS
+INNER JOIN continent ON pays.ID_CONTINENT = continent.ID_CONTINENT
+WHERE NOM_CONTINENT = 'Afrique';
+
 -- 15. Lister les bières du continent ‘Afrique’
 -- 16. Lister les tickets (année, numéro de ticket, montant total payé). En sachant que le prix
 -- de vente est égal au prix d’achat augmenté de 15% et que l’on n’est pas assujetti à la TVA.
@@ -86,3 +92,13 @@ WHERE NOM_TYPE = 'Trappiste';
 -- 20. Lister les articles qui n’ont fait l’objet d’aucune vente en 2014.
 -- 21. Coder de 3 manières différentes la requête suivante : 
 -- Lister les pays qui fabriquent des bières de type ‘Trappiste’.
+-- 22. Lister les tickets sur lesquels apparaissent un des articles apparaissant aussi sur le
+-- ticket 2014 856 (le ticket 856 de l année 2014)
+-- 23. Lister les articles ayant un degré d’alcool plus élevé que la
+-- plus forte des trappistes.
+-- 24. Editer les quantités vendues pour chaque couleur en 2014.
+-- 25. Donner pour chaque fabricant, le nombre de tickets sur lesquels apparait un de ses produits en 2014.
+-- 26. Donner l’ID, le nom, le volume et la quantité vendue des 20 articles les plus vendus en 2016.
+-- 27. Donner l’ID, le nom, le volume et la quantité vendue des 5 ‘Trappistes’ les plus vendus en 2016.
+-- 28. Donner l’ID, le nom, le volume et les quantités vendues en 2015 et 2016, des bières
+-- dont les ventes ont été st ables. ( Moins de 1% de variation)
