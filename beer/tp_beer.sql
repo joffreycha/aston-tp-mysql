@@ -158,7 +158,13 @@ INNER JOIN article using(ID_MARQUE)
 WHERE ID_TYPE = 13;
 
 -- 22. Lister les tickets sur lesquels apparaissent un des articles apparaissant aussi sur le
--- ticket 2014 856 (le ticket 856 de l année 2014)
+-- ticket 2014 856 (le ticket 856 de l'année 2014)
+SELECT ID_ARTICLE
+FROM article
+INNER JOIN ventes using(ID_ARTICLE)
+WHERE ANNEE = 2014
+AND NUMERO_TICKET = 856;
+
 -- 23. Lister les articles ayant un degré d’alcool plus élevé que la
 -- plus forte des trappistes.
 -- 24. Editer les quantités vendues pour chaque couleur en 2014.
