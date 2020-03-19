@@ -31,7 +31,26 @@ WHERE ANNEE = 2014
 AND EXTRACT(MONTH FROM DATE_VENTE) BETWEEN 03 AND 04;
 
 -- 7. Quelles sont les tickets émis au mois de mars et juin 2014 ?
+SELECT NUMERO_TICKET, DATE_VENTE
+FROM ticket
+WHERE ANNEE = 2014
+AND EXTRACT(MONTH FROM DATE_VENTE) = 03 
+OR EXTRACT(MONTH FROM DATE_VENTE) = 06; 
+
 -- 8. Afficher la liste des bières classée par couleur. ( A fficher l’id et le nom)
 -- 9. Afficher la liste des bières n’ayant pas de couleur. (Afficher l’id et le nom)
 -- 10. Lister pour chaque ticket la quantité totale d’articles vendus. (Classer par quantité décroissante)
 -- 11. Lister chaque ticket pour lequel la quantité totale d’articles vendus est supérieure à 500. ( C lasser par quantité décroissante)
+-- 12. Lister chaque ticket pour lequel la quantité totale d’articles vendus est supérieure à 500. On exclura du total, les vente s ayant une quantité supérieure à 50 
+-- (classer par quantité décroissante)
+-- 13. Lister les bières de type ‘Trappiste’. (id, nom de la bière, volume et titrage)
+-- 14. Lister les marques de bières du continent ‘Afrique’
+-- 15. Lister les bières du continent ‘Afrique’
+-- 16. Lister les tickets (année, numéro de ticket, montant total payé). En sachant que le prix
+-- de vente est égal au prix d’achat augmenté de 15% et que l’on n’est pas assujetti à la TVA.
+-- 17. Donner le C.A. par année.
+-- 18. Lister les quantités vendues de chaque article pour l’année 2016.
+-- 19. Lister les quantités vendues de chaque article pour les années 2014,2015 ,2016.
+-- 20. Lister les articles qui n’ont fait l’objet d’aucune vente en 2014.
+-- 21. Coder de 3 manières différentes la requête suivante : 
+-- Lister les pays qui fabriquent des bières de type ‘Trappiste’.
