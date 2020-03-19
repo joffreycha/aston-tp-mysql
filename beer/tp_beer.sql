@@ -123,6 +123,15 @@ GROUP BY ventes.ID_ARTICLE
 ORDER BY ANNEE, ventes.ID_ARTICLE;
 
 -- 20. Lister les articles qui n’ont fait l’objet d’aucune vente en 2014.
+SELECT article.ID_ARTICLE, NOM_ARTICLE
+FROM article
+WHERE NOT EXISTS (
+	SELECT ventes.ID_ARTICLE
+	FROM ventes
+	WHERE ventes.ID_ARTICLE = article.ID_ARTICLE
+	AND ANNEE = 2014
+);
+
 -- 21. Coder de 3 manières différentes la requête suivante : 
 -- Lister les pays qui fabriquent des bières de type ‘Trappiste’.
 -- 22. Lister les tickets sur lesquels apparaissent un des articles apparaissant aussi sur le
