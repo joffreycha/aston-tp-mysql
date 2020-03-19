@@ -100,6 +100,12 @@ GROUP BY ventes.NUMERO_TICKET
 ORDER BY ventes.NUMERO_TICKET;
 
 -- 17. Donner le C.A. par année.
+SELECT ANNEE, ROUND(SUM(PRIX_ACHAT)*1.15, 2) AS CA
+FROM ventes
+INNER JOIN article ON article.ID_ARTICLE = ventes.ID_ARTICLE
+GROUP BY ventes.ANNEE
+ORDER BY ventes.ANNEE; 
+
 -- 18. Lister les quantités vendues de chaque article pour l’année 2016.
 -- 19. Lister les quantités vendues de chaque article pour les années 2014,2015 ,2016.
 -- 20. Lister les articles qui n’ont fait l’objet d’aucune vente en 2014.
@@ -115,3 +121,7 @@ ORDER BY ventes.NUMERO_TICKET;
 -- 27. Donner l’ID, le nom, le volume et la quantité vendue des 5 ‘Trappistes’ les plus vendus en 2016.
 -- 28. Donner l’ID, le nom, le volume et les quantités vendues en 2015 et 2016, des bières
 -- dont les ventes ont été st ables. ( Moins de 1% de variation)
+-- 29. Lister les types de bières suivant l’évolution de leurs ventes entre 2015 et 2016.
+-- Classer le résultat par ordre décroissant des performances.
+-- 30. Existe-t-il des tickets sans vente ?
+-- 31. Lister les produits vendusen 2016 dans des quantités jusqu’à 15% des quantités de l’article le plus vendu.
