@@ -107,14 +107,21 @@ GROUP BY ventes.ANNEE
 ORDER BY ventes.ANNEE; 
 
 -- 18. Lister les quantités vendues de chaque article pour l’année 2016.
-SELECT ventes.ID_ARTICLE, NOM_ARTICLE, SUM(QUANTITE) AS TOTAL_VENDUS, ANNEE
+SELECT ventes.ID_ARTICLE, NOM_ARTICLE, SUM(QUANTITE) AS VENTES_PAR_ARTICLE, ANNEE
 FROM ventes
 INNER JOIN article ON ventes.ID_ARTICLE = article.ID_ARTICLE
 WHERE ANNEE = 2016
 GROUP BY ventes.ID_ARTICLE
 ORDER BY ventes.ID_ARTICLE;
 
--- 19. Lister les quantités vendues de chaque article pour les années 2014,2015 ,2016.
+-- 19. Lister les quantités vendues de chaque article pour les années 2014, 2015, 2016.
+SELECT ventes.ID_ARTICLE, NOM_ARTICLE, SUM(QUANTITE) AS VENTES_PAR_ARTICLE, ANNEE
+FROM ventes
+INNER JOIN article ON ventes.ID_ARTICLE = article.ID_ARTICLE
+WHERE ANNEE BETWEEN 2014 AND 2016
+GROUP BY ventes.ID_ARTICLE
+ORDER BY ANNEE, ventes.ID_ARTICLE;
+
 -- 20. Lister les articles qui n’ont fait l’objet d’aucune vente en 2014.
 -- 21. Coder de 3 manières différentes la requête suivante : 
 -- Lister les pays qui fabriquent des bières de type ‘Trappiste’.
