@@ -19,8 +19,12 @@ HAVING exemplaires_article >= 50
 ORDER BY NOM_ARTICLE;
 
 -- 5. Quelles sont les tickets émis au mois de mars 2014.
+SELECT NUMERO_TICKET
+FROM ticket
+WHERE ANNEE = 2014
+AND EXTRACT(MONTH FROM DATE_VENTE) = 03;
 
-
+SELECT * FROM TICKET;
 -- 6. Quelles sont les tickets émis entre les mois de mars et avril 2014 ?
 -- 7. Quelles sont les tickets émis au mois de mars et juin 2014 ?
 -- 8. Afficher la liste des bières classée par couleur. ( A fficher l’id et le nom)
