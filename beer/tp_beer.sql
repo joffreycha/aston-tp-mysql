@@ -37,7 +37,12 @@ WHERE ANNEE = 2014
 AND EXTRACT(MONTH FROM DATE_VENTE) = 03 
 OR EXTRACT(MONTH FROM DATE_VENTE) = 06; 
 
--- 8. Afficher la liste des bières classée par couleur. ( A fficher l’id et le nom)
+-- 8. Afficher la liste des bières classée par couleur. (Afficher l’id et le nom)
+SELECT ID_ARTICLE, NOM_ARTICLE, NOM_COULEUR
+FROM article
+INNER JOIN couleur ON article.ID_Couleur = couleur.ID_Couleur
+ORDER BY NOM_Couleur;
+
 -- 9. Afficher la liste des bières n’ayant pas de couleur. (Afficher l’id et le nom)
 -- 10. Lister pour chaque ticket la quantité totale d’articles vendus. (Classer par quantité décroissante)
 -- 11. Lister chaque ticket pour lequel la quantité totale d’articles vendus est supérieure à 500. ( C lasser par quantité décroissante)
