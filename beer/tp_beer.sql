@@ -6,7 +6,7 @@ WHERE ID_ARTICLE = 500;
 SELECT NUMERO_TICKET FROM ticket
 WHERE DATE_VENTE = "2014-01-15";
 
--- 3. Afficher les tickets émis du 15/01/2014 et le 17/01/2014.
+-- 3. Afficher les tickets émis le 15/01/2014 et le 17/01/2014.
 SELECT NUMERO_TICKET, DATE_VENTE FROM ticket
 WHERE DATE_VENTE = "2014-01-15" OR DATE_VENTE = "2014-01-17";
 
@@ -134,6 +134,29 @@ WHERE NOT EXISTS (
 
 -- 21. Coder de 3 manières différentes la requête suivante : 
 -- Lister les pays qui fabriquent des bières de type ‘Trappiste’.
+
+-- 1ère solution
+SELECT DISTINCT NOM_PAYS
+FROM  pays
+INNER JOIN marque ON pays.ID_PAYS = marque.ID_PAYS
+INNER JOIN article ON marque.ID_MARQUE = article.ID_MARQUE
+INNER JOIN type ON type.ID_TYPE = article.ID_TYPE
+WHERE NOM_TYPE = 'Trappiste';
+
+-- 2e solution
+SELECT DISTINCT NOM_PAYS
+FROM  pays
+INNER JOIN marque ON pays.ID_PAYS = marque.ID_PAYS
+INNER JOIN article ON marque.ID_MARQUE = article.ID_MARQUE
+WHERE ID_TYPE = 13;
+
+-- 3e solution
+SELECT DISTINCT NOM_PAYS
+FROM  pays
+INNER JOIN marque using(ID_PAYS)
+INNER JOIN article using(ID_MARQUE)
+WHERE ID_TYPE = 13;
+
 -- 22. Lister les tickets sur lesquels apparaissent un des articles apparaissant aussi sur le
 -- ticket 2014 856 (le ticket 856 de l année 2014)
 -- 23. Lister les articles ayant un degré d’alcool plus élevé que la
