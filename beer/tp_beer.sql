@@ -177,9 +177,22 @@ WHERE TITRAGE > (
 );
 
 -- 24. Editer les quantités vendues pour chaque couleur en 2014.
-
+SELECT QUANTITE, NOM_COULEUR
+FROM ventes
+INNER JOIN article using(ID_ARTICLE)
+INNER JOIN couleur using(ID_COULEUR)
+WHERE ANNEE = 2014
+GROUP BY ID_COULEUR;
 
 -- 25. Donner pour chaque fabricant, le nombre de tickets sur lesquels apparait un de ses produits en 2014.
+SELECT ID_FABRICANT, count(NUMERO_TICKET) AS NB_TICKETS
+FROM ventes
+INNER JOIN article using(ID_ARTICLE)
+INNER JOIN marque using(ID_MARQUE)
+WHERE ANNEE = 2014
+AND ID_FABRICANT IS NOT NULL
+GROUP BY ID_FABRICANT;
+
 -- 26. Donner l’ID, le nom, le volume et la quantité vendue des 20 articles les plus vendus en 2016.
 -- 27. Donner l’ID, le nom, le volume et la quantité vendue des 5 ‘Trappistes’ les plus vendus en 2016.
 -- 28. Donner l’ID, le nom, le volume et les quantités vendues en 2015 et 2016, des bières
