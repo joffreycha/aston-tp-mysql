@@ -61,8 +61,15 @@ GROUP BY NUMERO_TICKET
 HAVING quantite_articles_vendus > 500
 ORDER BY quantite_articles_vendus DESC;
 
--- 12. Lister chaque ticket pour lequel la quantité totale d’articles vendus est supérieure à 500. On exclura du total, les vente s ayant une quantité supérieure à 50 
+-- 12. Lister chaque ticket pour lequel la quantité totale d’articles vendus est supérieure à 500. On exclura du total, les ventes ayant une quantité supérieure à 50 
 -- (classer par quantité décroissante)
+SELECT NUMERO_TICKET, SUM(QUANTITE) AS quantite_articles_vendus
+FROM ventes
+WHERE QUANTITE < 50
+GROUP BY NUMERO_TICKET
+HAVING quantite_articles_vendus > 500
+ORDER BY quantite_articles_vendus DESC;
+
 -- 13. Lister les bières de type ‘Trappiste’. (id, nom de la bière, volume et titrage)
 -- 14. Lister les marques de bières du continent ‘Afrique’
 -- 15. Lister les bières du continent ‘Afrique’
