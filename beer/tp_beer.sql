@@ -7,6 +7,9 @@ SELECT NUMERO_TICKET FROM ticket
 WHERE DATE_VENTE = "2014-01-15";
 
 -- 3. Afficher les tickets émis du 15/01/2014 et le 17/01/2014.
+SELECT NUMERO_TICKET, DATE_VENTE FROM ticket
+WHERE DATE_VENTE = "2014-01-15" OR DATE_VENTE = "2014-01-17";
+
 -- 4. Editer la liste des articles apparaissant
 -- à 50 et plus exemplaires sur un ticket.
 -- 5. Quelles sont les tickets émis au mois de mars 2014.
