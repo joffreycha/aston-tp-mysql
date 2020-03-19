@@ -49,6 +49,11 @@ FROM article
 WHERE ID_Couleur IS NULL;
 
 -- 10. Lister pour chaque ticket la quantité totale d’articles vendus. (Classer par quantité décroissante)
+SELECT NUMERO_TICKET, SUM(QUANTITE) AS quantite_articles_vendus
+FROM ventes
+GROUP BY NUMERO_TICKET
+ORDER BY quantite_articles_vendus DESC;
+
 -- 11. Lister chaque ticket pour lequel la quantité totale d’articles vendus est supérieure à 500. ( C lasser par quantité décroissante)
 -- 12. Lister chaque ticket pour lequel la quantité totale d’articles vendus est supérieure à 500. On exclura du total, les vente s ayant une quantité supérieure à 50 
 -- (classer par quantité décroissante)
