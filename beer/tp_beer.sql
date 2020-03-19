@@ -3,6 +3,9 @@ SELECT NUMERO_TICKET FROM ventes
 WHERE ID_ARTICLE = 500;
 
 -- 2. Afficher les tickets du 15/01/2014.
+SELECT NUMERO_TICKET FROM ticket
+WHERE DATE_VENTE = "2014-01-15";
+
 -- 3. Afficher les tickets émis du 15/01/2014 et le 17/01/2014.
 -- 4. Editer la liste des articles apparaissant
 -- à 50 et plus exemplaires sur un ticket.
