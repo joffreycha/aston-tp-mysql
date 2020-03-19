@@ -41,9 +41,13 @@ OR EXTRACT(MONTH FROM DATE_VENTE) = 06;
 SELECT ID_ARTICLE, NOM_ARTICLE, NOM_COULEUR
 FROM article
 INNER JOIN couleur ON article.ID_Couleur = couleur.ID_Couleur
-ORDER BY NOM_Couleur;
+ORDER BY NOM_ARTICLE;
 
 -- 9. Afficher la liste des bières n’ayant pas de couleur. (Afficher l’id et le nom)
+SELECT ID_ARTICLE, NOM_ARTICLE
+FROM article
+WHERE ID_Couleur IS NULL;
+
 -- 10. Lister pour chaque ticket la quantité totale d’articles vendus. (Classer par quantité décroissante)
 -- 11. Lister chaque ticket pour lequel la quantité totale d’articles vendus est supérieure à 500. ( C lasser par quantité décroissante)
 -- 12. Lister chaque ticket pour lequel la quantité totale d’articles vendus est supérieure à 500. On exclura du total, les vente s ayant une quantité supérieure à 50 
