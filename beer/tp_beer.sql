@@ -194,7 +194,16 @@ AND ID_FABRICANT IS NOT NULL
 GROUP BY ID_FABRICANT;
 
 -- 26. Donner l’ID, le nom, le volume et la quantité vendue des 20 articles les plus vendus en 2016.
+SELECT ID_ARTICLE, NOM_ARTICLE, QUANTITE
+FROM article
+INNER JOIN ventes using(ID_ARTICLE)
+WHERE ANNEE = 2016
+ORDER BY QUANTITE DESC
+LIMIT 20;
+
 -- 27. Donner l’ID, le nom, le volume et la quantité vendue des 5 ‘Trappistes’ les plus vendus en 2016.
+
+
 -- 28. Donner l’ID, le nom, le volume et les quantités vendues en 2015 et 2016, des bières
 -- dont les ventes ont été st ables. ( Moins de 1% de variation)
 -- 29. Lister les types de bières suivant l’évolution de leurs ventes entre 2015 et 2016.
