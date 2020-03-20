@@ -38,7 +38,7 @@ AND EXTRACT(MONTH FROM DATE_VENTE) = 03
 OR EXTRACT(MONTH FROM DATE_VENTE) = 06; 
 
 -- 8. Afficher la liste des bières classée par couleur. (Afficher l’id et le nom)
-SELECT ID_ARTICLE, NOM_ARTICLE, NOM_COULEUR
+SELECT DISTINCT ID_ARTICLE, NOM_ARTICLE, VOLUME, NOM_COULEUR
 FROM article
 INNER JOIN couleur ON article.ID_Couleur = couleur.ID_Couleur
 ORDER BY NOM_ARTICLE;
