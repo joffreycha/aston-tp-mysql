@@ -263,7 +263,7 @@ INNER JOIN ventes ON ventes.ANNEE = ticket.ANNEE
 AND ticket.NUMERO_TICKET = ventes.NUMERO_TICKET
 WHERE ventes.NUMERO_TICKET IS NULL;
 
--- 31. Lister les produits vendus en 2016 dans des quantités jusqu’à 15% des quantités de l’article le plus vendu.
+-- 31. Lister les produits vendus en 2016 dans des quantités jusqu’à -15% des quantités de l’article le plus vendu.
 SELECT ID_ARTICLE, NOM_ARTICLE, VOLUME, SUM(QUANTITE) AS QUANTITE_VENDUE,
 (
 	(
@@ -273,14 +273,13 @@ SELECT ID_ARTICLE, NOM_ARTICLE, VOLUME, SUM(QUANTITE) AS QUANTITE_VENDUE,
 			-- Quantités vendues par article
 			SELECT SUM(QUANTITE) AS QUANTITE_VENDUE
 			FROM ventes
-			#INNER JOIN article using(ID_ARTICLE)
-			WHERE ventes.ID_ARTICLE = article.ID_ARTICLE
+            WHERE ANNEE = 2016
             GROUP BY ID_ARTICLE
 		) AS MAX_QUANTITE
-	) * 0.15
+	) * 0.85
 ) AS PLAFOND -- 15% des quantités de l'article le plus vendu
-FROM article
-INNER JOIN ventes using(ID_ARTICLE)
+FROM ventes
+INNER JOIN article using(ID_ARTICLE)
 WHERE ANNEE = 2016
 GROUP BY ID_ARTICLE
-HAVING QUANTITE_VENDUE <= PLAFOND;
+HAVING QUANTITE_VENDUE >= PLAFOND;
