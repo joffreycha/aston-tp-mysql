@@ -177,13 +177,13 @@ WHERE TITRAGE > (
 );
 
 -- 24. Editer les quantités vendues pour chaque couleur en 2014.
-SELECT QUANTITE, NOM_COULEUR
+SELECT SUM(QUANTITE), NOM_COULEUR
 FROM ventes
 INNER JOIN article using(ID_ARTICLE)
 INNER JOIN couleur using(ID_COULEUR)
 WHERE ANNEE = 2014
 GROUP BY ID_COULEUR;
-
+ 
 -- 25. Donner pour chaque fabricant, le nombre de tickets sur lesquels apparait un de ses produits en 2014.
 SELECT ID_FABRICANT, count(NUMERO_TICKET) AS NB_TICKETS
 FROM ventes
