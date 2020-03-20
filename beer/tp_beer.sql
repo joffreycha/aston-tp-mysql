@@ -54,11 +54,11 @@ GROUP BY ID_TICKET
 ORDER BY QUANTITE_ARTICLES_VENDUS DESC;
  
 -- 11. Lister chaque ticket pour lequel la quantité totale d’articles vendus est supérieure à 500. (Classer par quantité décroissante)
-SELECT NUMERO_TICKET, SUM(QUANTITE) AS quantite_articles_vendus
+SELECT CONCAT(ANNEE, " ", NUMERO_TICKET) AS ID_TICKET, SUM(QUANTITE) AS QUANTITE_ARTICLES_VENDUS
 FROM ventes
-GROUP BY NUMERO_TICKET
-HAVING quantite_articles_vendus > 500
-ORDER BY quantite_articles_vendus DESC;
+GROUP BY ID_TICKET
+HAVING QUANTITE_ARTICLES_VENDUS > 500
+ORDER BY QUANTITE_ARTICLES_VENDUS DESC;
 
 -- 12. Lister chaque ticket pour lequel la quantité totale d’articles vendus est supérieure à 500. On exclura du total, les ventes ayant une quantité supérieure à 50 
 -- (classer par quantité décroissante)
