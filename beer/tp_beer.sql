@@ -1,5 +1,5 @@
 -- 1. Quels sont les tickets qui comportent l’article d’ID 500, afficher le numéro de ticket uniquement ?
-SELECT NUMERO_TICKET FROM ventes
+SELECT CONCAT(ANNEE, " ", NUMERO_TICKET) AS "ANNEE+NUMERO_TICKET" FROM ventes
 WHERE ID_ARTICLE = 500;
 
 -- 2. Afficher les tickets du 15/01/2014.
