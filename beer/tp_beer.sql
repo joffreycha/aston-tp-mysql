@@ -206,11 +206,13 @@ LIMIT 20;
 SELECT ID_ARTICLE, NOM_ARTICLE, VOLUME, SUM(QUANTITE) AS QUANTITE_VENDUE
 FROM article
 INNER JOIN ventes using(ID_ARTICLE)
+INNER JOIN type using(ID_TYPE)
 WHERE ANNEE = 2016
-AND ID_TYPE = 13 # Trappiste
-ORDER BY QUANTITE DESC
+AND NOM_TYPE LIKE "Trappiste"
+GROUP BY NOM_ARTICLE
+ORDER BY QUANTITE_VENDUE DESC
 LIMIT 5;
-
+ 
 -- 28. Donner l’ID, le nom, le volume et les quantités vendues en 2015 et 2016, des bières
 -- dont les ventes ont été stables. (Moins de 1% de variation)
 SELECT ID_ARTICLE, NOM_ARTICLE, VOLUME, QUANTITE
