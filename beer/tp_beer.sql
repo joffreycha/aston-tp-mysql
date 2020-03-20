@@ -11,12 +11,12 @@ SELECT NUMERO_TICKET, DATE_VENTE FROM ticket
 WHERE DATE_VENTE = "2014-01-15" OR DATE_VENTE = "2014-01-17";
 
 -- 4. Editer la liste des articles apparaissant à 50 et plus exemplaires sur un ticket.
-SELECT ventes.NUMERO_TICKET, NOM_ARTICLE, COUNT(ventes.ID_ARTICLE) AS exemplaires_article FROM article
+SELECT ventes.ANNEE, ventes.NUMERO_TICKET, NOM_ARTICLE, COUNT(ventes.ID_ARTICLE) AS exemplaires_article FROM article
 INNER JOIN ventes ON article.ID_ARTICLE = ventes.ID_ARTICLE
 INNER JOIN ticket ON ticket.NUMERO_TICKET = ventes.NUMERO_TICKET
 GROUP BY ticket.NUMERO_TICKET
 HAVING exemplaires_article >= 50
-ORDER BY NOM_ARTICLE;
+ORDER BY ventes.ANNEE, ventes.NUMERO_TICKET;
 
 -- 5. Quelles sont les tickets émis au mois de mars 2014.
 SELECT NUMERO_TICKET
@@ -198,7 +198,7 @@ SELECT ID_ARTICLE, NOM_ARTICLE, VOLUME, QUANTITE
 FROM article
 INNER JOIN ventes using(ID_ARTICLE)
 WHERE ANNEE = 2016
-ORDER BY QUANTITE DESC
+#ORDER BY QUANTITE DESC
 LIMIT 20;
 
 -- 27. Donner l’ID, le nom, le volume et la quantité vendue des 5 ‘Trappistes’ les plus vendus en 2016.
@@ -208,10 +208,21 @@ INNER JOIN ventes using(ID_ARTICLE)
 WHERE ANNEE = 2016
 AND ID_TYPE = 13 # Trappiste
 ORDER BY QUANTITE DESC
-LIMIT 20;
+LIMIT 5;
 
 -- 28. Donner l’ID, le nom, le volume et les quantités vendues en 2015 et 2016, des bières
 -- dont les ventes ont été stables. (Moins de 1% de variation)
+SELECT ID_ARTICLE, NOM_ARTICLE, VOLUME, QUANTITE
+FROM article
+INNER JOIN ventes using(ID_ARTICLE)
+WHERE ANNEE IN (2015, 2016)
+ORDER BY QUANTITE DESC;
+
+SELECT article.ID_ARTICLE, article.NOM_ARTICLE, article.VOLUME, SUM(ventes.QUANTITE) AS QUANTITE_TOTALE FROM article
+JOIN (SELECT SUM(QUANTITE) FROM ventes WHERE ANNEE = 2016 GROUP BY ID_ARTICLE) AS SOMME_2016
+JOIN (SELECT SUM(QUANTITE) FROM ventes WHERE ANNEE = 2015 GROUP BY ID_ARTICLE) AS SOMME_2015
+    INNER JOIN ventes USING (ID_ARTICLE) WHERE ANNEE = 2016 OR ANNEE = 2015
+    AND article.ID_ARTICLE = (SELECT ID_ARTICLE FROM ventes HAVING (SOMME_2016-SOMME_2015)/SOMME_2015<0.01) GROUP BY NOM_ARTICLE
 
 -- 29. Lister les types de bières suivant l’évolution de leurs ventes entre 2015 et 2016.
 -- Classer le résultat par ordre décroissant des performances.
