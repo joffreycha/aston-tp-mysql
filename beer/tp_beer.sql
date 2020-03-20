@@ -249,16 +249,19 @@ SELECT NOM_TYPE,
 		FROM ventes
 		INNER JOIN article using(ID_ARTICLE)
 		WHERE article.ID_TYPE = type.ID_TYPE
-		AND ANNEE = 2015
+		AND ANNEE = 2015	
 	) 
 ) AS EVOLUTION
 FROM type
 GROUP BY ID_TYPE
-ORDER BY EVOLUTION DESC
-;
+ORDER BY EVOLUTION DESC;
 
 -- 30. Existe-t-il des tickets sans vente ?
-
+SELECT CONCAT(ticket.ANNEE, " ", ticket.NUMERO_TICKET) AS ID_TICKET
+FROM ticket
+INNER JOIN ventes ON ventes.ANNEE = ticket.ANNEE
+AND ticket.NUMERO_TICKET = ventes.NUMERO_TICKET
+WHERE ventes.NUMERO_TICKET IS NULL;
 
 -- 31. Lister les produits vendusen 2016 dans des quantités jusqu’à 15% des quantités de l’article le plus vendu.
 
