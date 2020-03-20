@@ -283,3 +283,24 @@ INNER JOIN article using(ID_ARTICLE)
 WHERE ANNEE = 2016
 GROUP BY ID_ARTICLE
 HAVING QUANTITE_VENDUE >= PLAFOND;
+
+-- 32. Appliquer une augmentation de tarif de 10% pour toutes les bières ‘Trappistes’ de couleur ‘Blonde’
+UPDATE article
+SET PRIX_ACHAT = ROUND(PRIX_ACHAT*1.1, 2)
+FROM article, type
+INNER JOIN type ON type.ID_TYPE = article.ID_TYPE
+AND ID_TYPE = 13 # "Trappiste"
+AND ID_COULEUR = 3 # "Blonde"
+;
+
+-- Requête qui check les résultats de l'update
+SELECT PRIX_ACHAT
+FROM article
+INNER JOIN type using(ID_TYPE)
+WHERE ID_TYPE = 13 # "Trappiste"
+AND ID_COULEUR = 3; # "Blonde"
+
+-- 33. Mettre à jour le degré d’alcool des toutes les bières n’ayant pas cette information. 
+-- On y mettra le degré d’alcool de la moins forte des bières du même type et de même couleur.
+-- 34. Suppression des bières qui ne sont pas des bières ! (Type ‘Bière Aromatisée’)
+-- 35. Supprimer les tickets qui n’ont pas de ventes.
