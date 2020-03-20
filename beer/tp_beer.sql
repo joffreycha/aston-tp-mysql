@@ -92,11 +92,11 @@ WHERE NOM_CONTINENT = 'Afrique';
 
 -- 16. Lister les tickets (année, numéro de ticket, montant total payé). En sachant que le prix
 -- de vente est égal au prix d’achat augmenté de 15% et que l’on n’est pas assujetti à la TVA.
-SELECT ventes.NUMERO_TICKET, ROUND(SUM(PRIX_ACHAT*QUANTITE)*1.15, 2) AS MONTANT_A_PAYER
+SELECT CONCAT(ANNEE, " ", NUMERO_TICKET) AS ID_TICKET, ROUND(SUM(PRIX_ACHAT*QUANTITE)*1.15, 2) AS MONTANT_A_PAYER
 FROM ventes
-INNER JOIN article ON article.ID_ARTICLE = ventes.ID_ARTICLE
-GROUP BY ventes.NUMERO_TICKET
-ORDER BY ventes.NUMERO_TICKET;
+INNER JOIN article using(ID_ARTICLE)
+GROUP BY ID_TICKET
+ORDER BY ID_TICKET;
 
 -- 17. Donner le C.A. par année.
 SELECT ANNEE, ROUND(SUM(PRIX_ACHAT*QUANTITE)*1.15, 2) AS CA
