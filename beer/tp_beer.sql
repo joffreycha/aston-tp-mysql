@@ -11,12 +11,11 @@ SELECT NUMERO_TICKET, DATE_VENTE FROM ticket
 WHERE DATE_VENTE = "2014-01-15" OR DATE_VENTE = "2014-01-17";
 
 -- 4. Editer la liste des articles apparaissant à 50 et plus exemplaires sur un ticket.
-SELECT ventes.ANNEE, ventes.NUMERO_TICKET, NOM_ARTICLE, COUNT(ventes.ID_ARTICLE) AS exemplaires_article FROM article
-INNER JOIN ventes ON article.ID_ARTICLE = ventes.ID_ARTICLE
-INNER JOIN ticket ON ticket.NUMERO_TICKET = ventes.NUMERO_TICKET
-GROUP BY ticket.NUMERO_TICKET
-HAVING exemplaires_article >= 50
-ORDER BY ventes.ANNEE, ventes.NUMERO_TICKET;
+SELECT CONCAT(ventes.ANNEE, " ", ventes.NUMERO_TICKET) AS ID_TICKET, ID_ARTICLE, NOM_ARTICLE, QUANTITE
+FROM ventes
+INNER JOIN article using(ID_ARTICLE)
+WHERE QUANTITE >= 50
+ORDER BY NOM_ARTICLE;
 
 -- 5. Quelles sont les tickets émis au mois de mars 2014.
 SELECT NUMERO_TICKET
