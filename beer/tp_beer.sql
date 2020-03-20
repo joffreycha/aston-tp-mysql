@@ -286,12 +286,11 @@ HAVING QUANTITE_VENDUE >= PLAFOND;
 
 -- 32. Appliquer une augmentation de tarif de 10% pour toutes les bières ‘Trappistes’ de couleur ‘Blonde’
 UPDATE article
+INNER JOIN type using(ID_TYPE)
 SET PRIX_ACHAT = ROUND(PRIX_ACHAT*1.1, 2)
-FROM article, type
-INNER JOIN type ON type.ID_TYPE = article.ID_TYPE
+WHERE type.ID_TYPE = article.ID_TYPE
 AND ID_TYPE = 13 # "Trappiste"
-AND ID_COULEUR = 3 # "Blonde"
-;
+AND ID_COULEUR = 3; # "Blonde"
 
 -- Requête qui check les résultats de l'update
 SELECT PRIX_ACHAT
