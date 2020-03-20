@@ -1,5 +1,5 @@
 -- 1. Quels sont les tickets qui comportent l’article d’ID 500, afficher le numéro de ticket uniquement ?
-SELECT CONCAT(ANNEE, " ", NUMERO_TICKET) AS "ANNEE+NUMERO_TICKET" FROM ventes
+SELECT CONCAT(ANNEE, " ", NUMERO_TICKET) AS ID_TICKET FROM ventes
 WHERE ID_ARTICLE = 500;
 
 -- 2. Afficher les tickets du 15/01/2014.
@@ -159,14 +159,12 @@ WHERE ID_TYPE = 13;
 
 -- 22. Lister les tickets sur lesquels apparaissent un des articles apparaissant aussi sur le
 -- ticket 2014 856 (le ticket 856 de l'année 2014)
-SELECT *
-FROM ticket
-INNER JOIN ventes ON ticket.NUMERO_TICKET = ventes.NUMERO_TICKET
-AND ticket.ANNEE = ventes.ANNEE
+SELECT CONCAT(ANNEE, " ", NUMERO_TICKET) AS ID_TICKET, ID_ARTICLE
+FROM ventes
 WHERE ID_ARTICLE IN (
-	SELECT ID_ARTICLE FROM ventes
-	WHERE ANNEE = 2014
-	AND NUMERO_TICKET = 856
+	SELECT ID_ARTICLE
+    FROM ventes
+	WHERE CONCAT(ANNEE, " ", NUMERO_TICKET) = "2014 856"
 );
 
 -- 23. Lister les articles ayant un degré d’alcool plus élevé que la plus forte des trappistes.
